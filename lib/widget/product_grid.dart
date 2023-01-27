@@ -3,10 +3,9 @@ import 'package:example/widget/product_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
-import '../models/product.dart';
+import '../providers/product.dart';
 
 class ProductData extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     final productData = Provider.of<Products>(context);
@@ -19,9 +18,7 @@ class ProductData extends StatelessWidget {
             childAspectRatio: 3 / 2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10),
-        itemBuilder: (ctx, i) => ProductItem(
-            imageUrl: product[i].imageUrl,
-            id: product[i].id,
-            title: product[i].title));
+        itemBuilder: (ctx, i) => ChangeNotifierProvider(
+            create: (c) => product[i], child: ProductItem()));
   }
 }
