@@ -38,6 +38,10 @@ class Products with ChangeNotifier {
     ),
   ];
 
+  List<Product> get favouriteItems {
+    return _items.where((element) => element.isFavorite).toList();
+  }
+
   List<Product> get item{
     return [..._items];
   }
@@ -50,4 +54,6 @@ class Products with ChangeNotifier {
   Product findViewById(String id) {
     return _items.firstWhere((element) => id == element.id);
   }
+
+
 }
